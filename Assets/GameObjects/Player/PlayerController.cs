@@ -7,7 +7,6 @@ using System;
 public class PlayerController : MonoBehaviour, ISoldier {
 
     ISoldier pawn;
-
     Camera selfCamera;
 
     void Start() {
