@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 114000014064296360}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff0eb2a35eb7ed40afade83a7a8cdde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  currentHealth: 100
+  destroyOnDeath: 1
+  UIHealthBar: {fileID: 114000012680081576, guid: b1c694c91409fa64c9354e49a484c766,
+    type: 2}
   searchRadius: 10
 --- !u!136 &136000010731172366
 CapsuleCollider:

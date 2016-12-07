@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 6717155741921be4da993fbcbc7d9a40
-timeCreated: 1480860960
+timeCreated: 1481139461
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - UIHealthBar: {fileID: 114000012680081576, guid: b1c694c91409fa64c9354e49a484c766,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -13,10 +13,12 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 
 	Camera selfCamera;
 
-    void Start() {
+    public override void Start() {
+        base.Start();
 		selfCamera = GetComponentInChildren<Camera>();
         inventory = GetComponent<Inventory>();
         uiQuickslot = FindObjectOfType<UIQuickslot>();
+        destroyOnDeath = false;
     }
 
 	[Client]
@@ -62,7 +64,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 	[Command]
 	public void CmdShoot() {
 		if (currentGun == null) {
-			Debug.Log ("PlayerID: " + netId + " Unable to Shoot because currentGun is null");
+			//Debug.Log ("PlayerID: " + netId + " Unable to Shoot because currentGun is null");
 			return;
 		}
 

@@ -392,8 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4080795611d4d48aeda28eec3c901c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  currentHealth: 100
+  destroyOnDeath: 1
+  UIHealthBarPrefab: {fileID: 1000012742727956, guid: b1c694c91409fa64c9354e49a484c766,
+    type: 2}
   gunMountTransform: {fileID: 4000013689698992}
+  currentGun: {fileID: 0}
 --- !u!114 &114000012428809884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.071428575
+  m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 1

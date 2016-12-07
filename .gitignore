@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /build_Data/
+/build_Data/Managed/
 build.exe
 /Assets/AssetStoreTools*
 

@@ -9,16 +9,12 @@ public class AIController : Character {
 
     NavMeshAgent agent;
 
-	void Start () {
+	public override void Start () {
         agent = GetComponent<NavMeshAgent>();
 	}
 	
 	void Update () {
-        Vector3 destination = FindClosestPlayer();
-        if (destination != null)
-        {
-            agent.SetDestination(destination);
-        }
+        agent.SetDestination(FindClosestPlayer());
     }
 
     Vector3 FindClosestPlayer()
