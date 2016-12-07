@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(SoldierCharacter))]
 [RequireComponent(typeof(SetupLocalPlayer))]
-public class PlayerController : MonoBehaviour, ISoldier {
+public class PlayerController : NetworkBehaviour, ISoldier {
 
     ISoldier pawn;
 
     Transform cam;
+
     bool lockCursor = true;
 
     void Start() {
@@ -91,19 +93,19 @@ public class PlayerController : MonoBehaviour, ISoldier {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-
+			pawn.UseItemAtIndex(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-
+			pawn.UseItemAtIndex(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
-
+			pawn.UseItemAtIndex(3);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha5)) {
-
+			pawn.UseItemAtIndex(4);
         }
     }
 
