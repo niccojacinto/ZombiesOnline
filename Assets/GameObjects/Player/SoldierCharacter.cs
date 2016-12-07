@@ -12,7 +12,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     public Gun currentGun;
 
 	Camera selfCamera;
-
+    
     public override void Start() {
         base.Start();
 		selfCamera = GetComponentInChildren<Camera>();

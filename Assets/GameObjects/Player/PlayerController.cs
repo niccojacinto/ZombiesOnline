@@ -1,19 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System;
 
 [RequireComponent(typeof(SoldierCharacter))]
 [RequireComponent(typeof(SetupLocalPlayer))]
-public class PlayerController : MonoBehaviour, ISoldier {
+public class PlayerController : NetworkBehaviour, ISoldier {
 
     ISoldier pawn;
 
     Transform cam;
     bool lockCursor = true;
 
+    Animator animator;
+    bool anim_isJumping = false;
+    bool anim_isGrounded = false;
+    bool anim_isAiming = false;
+    bool anim_isSprinting = false;
+    float anim_moveSpeedX = 0.0f;
+    float anim_moveSpeedZ = 0.0f;
+
+    float walkSpeed = 0.5f;
+    float sprintSpeed = 2.0f;
+
     void Start() {
         pawn = GetComponent<SoldierCharacter>();
 		cam = GetComponentInChildren<Camera>().transform;
+        animator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -23,15 +36,42 @@ public class PlayerController : MonoBehaviour, ISoldier {
     void HandleInput() {
         HandleMovement();
         HandleMouse();
+        HandleAnimations();
         HandleQuickslot();
     }
 
     void HandleMovement() {
-        float vertical = Input.GetAxis("Vertical");
-        MoveForward(vertical);
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            anim_isSprinting = true;
+        }
+        else
+        {
+            anim_isSprinting = false;
+        }
 
+        float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
-        MoveRight(horizontal);
+
+        anim_moveSpeedX = vertical;
+        anim_moveSpeedZ = horizontal;
+
+        if(anim_isAiming)
+        {
+            MoveForward(vertical * walkSpeed);
+            MoveRight(horizontal * walkSpeed);
+        }
+        else if(anim_isSprinting)
+        {
+            MoveForward(vertical * sprintSpeed);
+            MoveRight(horizontal * sprintSpeed);
+        }
+        else
+        {
+            MoveForward(vertical);
+            MoveRight(horizontal);
+        }
+
 
         float xRot = Input.GetAxis("Mouse X"); // * XSensitivity;
         float yRot = Input.GetAxis("Mouse Y"); // * YSensitivity;
@@ -42,6 +82,14 @@ public class PlayerController : MonoBehaviour, ISoldier {
         RotateRight(xRot);
 
         UpdateCursorLock();
+    }
+
+    void HandleAnimations()
+    {
+        animator.SetFloat("moveSpeedx", anim_moveSpeedX);
+        animator.SetFloat("moveSpeedz", anim_moveSpeedZ);
+
+        animator.SetBool("isAiming", anim_isAiming);
     }
 
     void SetCursorLock(bool value)
@@ -91,25 +139,33 @@ public class PlayerController : MonoBehaviour, ISoldier {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-
+            pawn.UseItemAtIndex(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-
+            pawn.UseItemAtIndex(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
-
+            pawn.UseItemAtIndex(3);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha5)) {
-
+            pawn.UseItemAtIndex(4);
         }
     }
 
     void HandleMouse() {
         if (Input.GetMouseButton(0)) {
             Shoot();
+        }
+        if(Input.GetMouseButtonDown(1))
+        {
+            anim_isAiming = true;
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            anim_isAiming = false;
         }
     }
 

@@ -37,7 +37,7 @@ public class Character : NetworkBehaviour, ICharacter {
             spawnPoints = FindObjectsOfType<NetworkStartPosition>();
             Canvas HUD = FindObjectOfType<Canvas>();
             UIHealthBar = Instantiate(UIHealthBarPrefab).GetComponent<Slider>();
-            UIHealthBar.transform.parent = HUD.transform;
+            UIHealthBar.transform.SetParent(HUD.transform);
         }
     }
 

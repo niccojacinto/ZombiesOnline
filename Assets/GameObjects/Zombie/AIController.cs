@@ -11,6 +11,7 @@ public class AIController : Character {
 
 	public override void Start () {
         agent = GetComponent<NavMeshAgent>();
+        destroyOnDeath = true;
 	}
 	
 	void Update () {

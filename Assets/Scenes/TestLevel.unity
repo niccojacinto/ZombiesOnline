@@ -1325,6 +1325,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1000012121252596, guid: b9f9b0883246aaf489b9cfeef9d67ac9,
     type: 2}
   numberOfEnemies: 1
+  enemiesRemaining: 0
 --- !u!4 &2009284170
 Transform:
   m_ObjectHideFlags: 0

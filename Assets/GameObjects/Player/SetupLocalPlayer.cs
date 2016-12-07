@@ -3,11 +3,11 @@ using System.Collections;
 using UnityEngine.Networking;
 
 // Class for Networking Setup Only
-
-
 public class SetupLocalPlayer : NetworkBehaviour {
 
-	void Start () {
+    public GameObject SwatMesh;
+
+    void Start () {
 	    if (isLocalPlayer) {
             // If you are this player...
             GetComponent<PlayerController>().enabled = true;
@@ -15,6 +15,9 @@ public class SetupLocalPlayer : NetworkBehaviour {
             GetComponent<Inventory>().enabled = true;
 			FindObjectOfType<UIDebug> ().BindPlayer(GetComponent<SoldierCharacter>());
             FindObjectOfType<UIQuickslot>().BindInventory(GetComponent<Inventory>());
+
+            // disable soldier mesh
+            //SwatMesh.SetActive(false);
         } else {
             // If the player isnt you...
 
