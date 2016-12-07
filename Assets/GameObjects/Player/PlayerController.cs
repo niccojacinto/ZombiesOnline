@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, ISoldier {
         float yRot = Input.GetAxis("Mouse Y"); // * YSensitivity;
 
         // Camera Up and Down
-        cam.localRotation *= Quaternion.Euler(-yRot, 0, 0f);
+		UpdateCameraY(yRot);
         // Camera Rotation and Player Rotation -- Rotation speed is limited by the Character rotation speed
         RotateRight(xRot);
 
@@ -132,6 +132,10 @@ public class PlayerController : MonoBehaviour, ISoldier {
     public void Shoot() {
         pawn.Shoot();
     }
+
+	public void UpdateCameraY(float _yRot) {
+		pawn.UpdateCameraY (_yRot);
+	}
 
     public bool UseItemAtIndex(int _index) {
         return pawn.UseItemAtIndex(_index);

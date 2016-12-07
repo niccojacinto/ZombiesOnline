@@ -103,4 +103,14 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
             AddItem(item);
         }
     }
+
+	public void UpdateCameraY(float _yRot) {
+		selfCamera.transform.localRotation *= Quaternion.Euler(-_yRot, 0, 0f);
+		CmdUpdateCameraY (_yRot);
+	}
+
+	[Command]
+	public void CmdUpdateCameraY(float _yRot) {
+		selfCamera.transform.localRotation *= Quaternion.Euler(-_yRot, 0, 0f);
+	}
 }
