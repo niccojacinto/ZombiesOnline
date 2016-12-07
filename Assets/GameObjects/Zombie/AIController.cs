@@ -26,7 +26,7 @@ public class AIController : Character {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
         float closestDist = searchRadius;
-        Debug.Log(players.Length);
+        // Debug.Log(players.Length);
         Vector3 closestPlayer = Vector3.zero;
         
         foreach(GameObject player in players)

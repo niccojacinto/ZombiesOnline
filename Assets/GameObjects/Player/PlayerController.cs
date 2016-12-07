@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, ISoldier {
 
     void Start() {
         pawn = GetComponent<SoldierCharacter>();
-	cam = GetComponentInChildren<Camera>().transform;
+		cam = GetComponentInChildren<Camera>().transform;
     }
 
     void Update() {

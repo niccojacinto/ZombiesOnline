@@ -9,7 +9,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     public Transform gunMountTransform;
     UIQuickslot uiQuickslot;
     Inventory inventory;
-    Gun currentGun;
+    public Gun currentGun;
 
 	Camera selfCamera;
 
@@ -22,13 +22,12 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 	[Client]
 	public void Equip(Gun _gun) {
 		if (currentGun == _gun) return;
-		Unequip();
 		currentGun = _gun;
 		currentGun.GetComponent<Collider>().enabled = false;
 		currentGun.gameObject.SetActive(true);
-		currentGun.transform.parent = selfCamera.transform;
 		currentGun.transform.position = gunMountTransform.position;
 		currentGun.transform.rotation = gunMountTransform.rotation;
+		currentGun.transform.parent = selfCamera.transform;
 		currentGun.GetComponent<Rigidbody>().isKinematic = true;
 		CmdEquip (_gun.netId);
 	}
@@ -49,9 +48,9 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 		currentGun = ClientScene.FindLocalObject (_id).GetComponent<Gun> ();
 		currentGun.GetComponent<Collider>().enabled = false;
 		currentGun.gameObject.SetActive(true);
-		currentGun.transform.parent = selfCamera.transform;
 		currentGun.transform.position = gunMountTransform.position;
 		currentGun.transform.rotation = gunMountTransform.rotation;
+		currentGun.transform.parent = selfCamera.transform;
 		currentGun.GetComponent<Rigidbody>().isKinematic = true;
 	}
 
