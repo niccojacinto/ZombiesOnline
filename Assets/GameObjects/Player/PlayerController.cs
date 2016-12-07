@@ -9,13 +9,11 @@ public class PlayerController : MonoBehaviour, ISoldier {
     ISoldier pawn;
 
     Transform cam;
+    bool lockCursor = true;
 
     void Start() {
         pawn = GetComponent<SoldierCharacter>();
-		cam = GetComponentInChildren<Camera>().transform;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+	cam = GetComponentInChildren<Camera>().transform;
     }
 
     void Update() {
@@ -42,6 +40,49 @@ public class PlayerController : MonoBehaviour, ISoldier {
         cam.localRotation *= Quaternion.Euler(-yRot, 0, 0f);
         // Camera Rotation and Player Rotation -- Rotation speed is limited by the Character rotation speed
         RotateRight(xRot);
+
+        UpdateCursorLock();
+    }
+
+    void SetCursorLock(bool value)
+    {
+        lockCursor = value;
+        if(!lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    void UpdateCursorLock()
+    {
+        if(lockCursor)
+        {
+            InternalLockUpdate();
+        }
+    }
+
+    void InternalLockUpdate()
+    {
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            lockCursor = false;
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            lockCursor = true;
+        }
+
+        if(lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else if(!lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void HandleQuickslot() {
