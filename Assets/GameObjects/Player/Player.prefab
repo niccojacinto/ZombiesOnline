@@ -394,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   gunMountTransform: {fileID: 4000013689698992}
+  currentGun: {fileID: 0}
 --- !u!114 &114000012428809884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
+  m_TransformSyncMode: 3
   m_SendInterval: 0.071428575
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0

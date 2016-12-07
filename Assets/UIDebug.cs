@@ -26,7 +26,7 @@ public class UIDebug : MonoBehaviour {
 	}
 
 	public void BindPlayer(SoldierCharacter _sc) {
-		Debug.Log (uiDebugText.Length);
+		//	Debug.Log (uiDebugText.Length);
 		sc = _sc;
 		SetText (0, "NetworkID: " + sc.netId);
 	}

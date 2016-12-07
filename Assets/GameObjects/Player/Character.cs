@@ -12,6 +12,8 @@ public class Character : NetworkBehaviour, ICharacter {
     public const float maxHealth = 100.0f;
     public const float linearSpeed = 5.0f; // Units per second
     public const float angularSpeed = 180.0f; // Degrees per second
+
+	[SyncVar]
     public float health = 100.0f;
 
     void Awake() {
