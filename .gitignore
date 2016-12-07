@@ -3,6 +3,7 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/Build/
 /build_Data/
 /build_Data/Managed/
 build.exe
@@ -82,3 +83,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.mdb
+build_Data/Managed/Assembly-CSharp.dll.mdb
+*.mdb
+build_Data/Managed/Assembly-CSharp.dll.mdb

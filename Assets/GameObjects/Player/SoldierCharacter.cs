@@ -24,6 +24,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 	[Client]
 	public void Equip(Gun _gun) {
 		if (currentGun == _gun) return;
+		Unequip ();
 		currentGun = _gun;
 		currentGun.GetComponent<Collider>().enabled = false;
 		currentGun.gameObject.SetActive(true);
@@ -93,11 +94,17 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 
     public bool UseItemAtIndex(int _index) {
         if (inventory.UseItemAtIndex(_index)) {
+			CmdUseItemAtIndex (_index);
             uiQuickslot.RefreshUI();
             return true;
         }
         return false;
     }
+
+	[Command]
+	public void CmdUseItemAtIndex(int _index) {
+		inventory.UseItemAtIndex (_index);
+	}
 
     void OnCollisionEnter(Collision col) {
         Item item = col.gameObject.GetComponent<Item>();
