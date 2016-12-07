@@ -11,35 +11,68 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     Inventory inventory;
     Gun currentGun;
 
+	Camera selfCamera;
+
     void Start() {
+		selfCamera = GetComponentInChildren<Camera>();
         inventory = GetComponent<Inventory>();
         uiQuickslot = FindObjectOfType<UIQuickslot>();
     }
 
-    public void Equip(Gun _gun) {
-        if (currentGun == _gun) return;
-        Unequip();
-        currentGun = _gun;
-        currentGun.GetComponent<Collider>().enabled = false;
-        currentGun.gameObject.SetActive(true);
-        currentGun.transform.parent = GetComponentInChildren<Camera>().transform;
-        currentGun.transform.position = gunMountTransform.position;
-        currentGun.transform.rotation = gunMountTransform.rotation;
-        currentGun.GetComponent<Rigidbody>().isKinematic = true;
-    }
-    
-    private void Unequip() {
-        if (currentGun == null) return;
-        currentGun.transform.parent = null;
-        currentGun.gameObject.SetActive(false);
-        currentGun.GetComponent<Rigidbody>().isKinematic = false;
-        currentGun.GetComponent<Collider>().enabled = true;
+	[Client]
+	public void Equip(Gun _gun) {
+		if (currentGun == _gun) return;
+		Unequip();
+		currentGun = _gun;
+		currentGun.GetComponent<Collider>().enabled = false;
+		currentGun.gameObject.SetActive(true);
+		currentGun.transform.parent = selfCamera.transform;
+		currentGun.transform.position = gunMountTransform.position;
+		currentGun.transform.rotation = gunMountTransform.rotation;
+		currentGun.GetComponent<Rigidbody>().isKinematic = true;
+		CmdEquip (_gun.netId);
+	}
+
+	[Client]
+	private void Unequip() {
+		if (currentGun == null) return;
+		currentGun.transform.parent = null;
+		currentGun.gameObject.SetActive(false);
+		currentGun.GetComponent<Rigidbody>().isKinematic = false;
+		currentGun.GetComponent<Collider>().enabled = true;
+	}
+
+	[Command]
+	public void CmdEquip(NetworkInstanceId _id){
+		// Debug.Log ("CmdEquip(" + netId + ")");
+		Unequip();
+		currentGun = ClientScene.FindLocalObject (_id).GetComponent<Gun> ();
+		currentGun.GetComponent<Collider>().enabled = false;
+		currentGun.gameObject.SetActive(true);
+		currentGun.transform.parent = selfCamera.transform;
+		currentGun.transform.position = gunMountTransform.position;
+		currentGun.transform.rotation = gunMountTransform.rotation;
+		currentGun.GetComponent<Rigidbody>().isKinematic = true;
+	}
+
+	[Client]
+    public void Shoot() {
+		CmdShoot ();
     }
 
-    public void Shoot() {
-        if (currentGun == null) return;
-        currentGun.Shoot();
-    }
+	[Command]
+	public void CmdShoot() {
+		if (currentGun == null) {
+			Debug.Log ("PlayerID: " + netId + " Unable to Shoot because currentGun is null");
+			return;
+		}
+
+		if (currentGun.Ready ()) {
+			currentGun.Shoot ();
+			GameObject bullet = (GameObject)Instantiate(currentGun.gunProperties.bulletPrefab, currentGun.barrelExit.position, currentGun.GetOffset());
+			NetworkServer.Spawn(bullet);
+		}
+	}
 
     public bool AddItem(Item _item) {
         if (inventory.AddItem(_item)) {

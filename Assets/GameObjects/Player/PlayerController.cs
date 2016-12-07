@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour, ISoldier {
 
     ISoldier pawn;
 
-    Camera selfCamera;
+    Transform cam;
 
     void Start() {
         pawn = GetComponent<SoldierCharacter>();
-        selfCamera = GetComponentInChildren<Camera>();
+		cam = GetComponentInChildren<Camera>().transform;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, ISoldier {
         float yRot = Input.GetAxis("Mouse Y"); // * YSensitivity;
 
         // Camera Up and Down
-        selfCamera.transform.localRotation *= Quaternion.Euler(-yRot, 0, 0f);
+        cam.localRotation *= Quaternion.Euler(-yRot, 0, 0f);
         // Camera Rotation and Player Rotation -- Rotation speed is limited by the Character rotation speed
         RotateRight(xRot);
     }
