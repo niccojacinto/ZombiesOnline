@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class AIController : Character {
 
@@ -9,6 +10,41 @@ public class AIController : Character {
     float attackRadius = 2.0f;
     float attackSpeed = 1.0f;
     float elapsed = 0.0f;
+
+    public GameObject head;
+    public Transform headBone;
+
+    public GameObject leftForeArm;
+    public GameObject leftHand;
+    public GameObject leftUpperArm;
+
+    public GameObject rightForeArm;
+    public GameObject rightHand;
+    public GameObject rightUpperArm;
+
+    internal void DisemBowel(string tag)
+    {
+        if(tag == "EnemyHead")
+        {
+            head.SetActive(false);
+            headBone.GetComponentInChildren<ParticleSystem>().Emit(50);
+        }
+
+        if(tag == "EnemyLeftArm")
+        {
+            leftForeArm.SetActive(false);
+            leftHand.SetActive(false);
+            leftUpperArm.SetActive(false);
+        }
+
+        if(tag == "EnemyRightArm")
+        {
+            rightForeArm.SetActive(false);
+            rightHand.SetActive(false);
+            rightUpperArm.SetActive(false);
+        }
+    }
+
     float damageAmount = 20.0f;
 
     bool isDying = false;

@@ -382,5 +382,5 @@ MonoBehaviour:
       type: 2}
     fireRate: 0.05
     maxAmmo: 1000
-    accuracy: 2.6
+    accuracy: 0
   ammo: 1000

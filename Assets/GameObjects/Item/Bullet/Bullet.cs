@@ -28,4 +28,12 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject);
         // Destroy(Instantiate(deathParticle, transform.position, Quaternion.identity), 0.3f);
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.tag == "EnemyHead" || col.gameObject.tag == "EnemyLeftArm" || col.gameObject.tag == "EnemyRightArm")
+        {
+            col.gameObject.GetComponent<Dismember>().BulletHit();
+        }
+    }
 }
