@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 using System;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(SoldierCharacter))]
 [RequireComponent(typeof(SetupLocalPlayer))]
@@ -10,6 +11,7 @@ public class PlayerController : NetworkBehaviour, ISoldier {
     ISoldier pawn;
 
     Transform cam;
+
     bool lockCursor = true;
 
     Animator animator;
@@ -139,6 +141,7 @@ public class PlayerController : NetworkBehaviour, ISoldier {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
+<<<<<<< HEAD
             pawn.UseItemAtIndex(1);
         }
 

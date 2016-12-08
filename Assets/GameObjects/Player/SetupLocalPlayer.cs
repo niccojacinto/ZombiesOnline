@@ -13,6 +13,7 @@ public class SetupLocalPlayer : NetworkBehaviour {
             GetComponent<PlayerController>().enabled = true;
             GetComponent<SoldierCharacter>().enabled = true;
             GetComponent<Inventory>().enabled = true;
+			// FindObjectOfType<UIConsole> ().enabled = true;
 			FindObjectOfType<UIDebug> ().BindPlayer(GetComponent<SoldierCharacter>());
             FindObjectOfType<UIQuickslot>().BindInventory(GetComponent<Inventory>());
 
