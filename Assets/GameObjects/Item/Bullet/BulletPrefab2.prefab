@@ -27,7 +27,7 @@ GameObject:
   - 114: {fileID: 114000012234723474}
   - 108: {fileID: 108000013262795048}
   m_Layer: 0
-  m_Name: BulletPrefab
+  m_Name: BulletPrefab2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
+  m_Color: {r: 0.11764705, g: 0.59837717, b: 1, a: 1}
   m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
@@ -118,7 +118,7 @@ Light:
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: e59f068002a7b47858274b3c71e10ea7, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -176,21 +176,21 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 246
-    i1: 184
-    i2: 12
-    i3: 230
-    i4: 127
-    i5: 0
-    i6: 157
-    i7: 196
-    i8: 56
-    i9: 85
-    i10: 252
-    i11: 158
-    i12: 17
-    i13: 38
-    i14: 203
-    i15: 95
+    i0: 174
+    i1: 170
+    i2: 138
+    i3: 56
+    i4: 207
+    i5: 212
+    i6: 109
+    i7: 4
+    i8: 57
+    i9: 243
+    i10: 101
+    i11: 224
+    i12: 18
+    i13: 253
+    i14: 149
+    i15: 180
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
