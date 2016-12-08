@@ -10,8 +10,10 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     UIQuickslot uiQuickslot;
     Inventory inventory;
     public Gun currentGun;
+    Transform targetGunPos;
+    Vector3 currentGunVel = Vector3.one;
 
-	Camera selfCamera;
+    Camera selfCamera;
     
     public override void Start() {
         base.Start();
@@ -28,9 +30,10 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 		currentGun = _gun;
 		currentGun.GetComponent<Collider>().enabled = false;
 		currentGun.gameObject.SetActive(true);
-		currentGun.transform.position = gunMountTransform.position;
-		currentGun.transform.rotation = gunMountTransform.rotation;
-		currentGun.transform.parent = selfCamera.transform;
+        currentGun.transform.SetParent(targetGunPos);
+        currentGun.transform.localPosition = Vector3.zero;
+        currentGun.transform.localRotation = Quaternion.identity;
+        currentGun.transform.Rotate(new Vector3(0, 270, 0));
 		currentGun.GetComponent<Rigidbody>().isKinematic = true;
 		CmdEquip (_gun.netId);
 	}
@@ -51,10 +54,11 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
 		currentGun = ClientScene.FindLocalObject (_id).GetComponent<Gun> ();
 		currentGun.GetComponent<Collider>().enabled = false;
 		currentGun.gameObject.SetActive(true);
-		currentGun.transform.position = gunMountTransform.position;
-		currentGun.transform.rotation = gunMountTransform.rotation;
-		currentGun.transform.parent = selfCamera.transform;
-		currentGun.GetComponent<Rigidbody>().isKinematic = true;
+        currentGun.transform.SetParent(targetGunPos);
+        currentGun.transform.localPosition = Vector3.zero;
+        currentGun.transform.localRotation = Quaternion.identity;
+        currentGun.transform.Rotate(new Vector3(0, 270, 0));
+        currentGun.GetComponent<Rigidbody>().isKinematic = true;
 	}
 
 	[Client]
@@ -114,12 +118,27 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     }
 
 	public void UpdateCameraY(float _yRot) {
-		selfCamera.transform.localRotation *= Quaternion.Euler(-_yRot, 0, 0f);
+		selfCamera.transform.rotation *= Quaternion.Euler(-_yRot, 0, 0f);
 		CmdUpdateCameraY (_yRot);
 	}
 
 	[Command]
 	public void CmdUpdateCameraY(float _yRot) {
-		selfCamera.transform.localRotation *= Quaternion.Euler(-_yRot, 0, 0f);
+		selfCamera.transform.rotation *= Quaternion.Euler(-_yRot, 0, 0f);
 	}
+
+    [Client]
+    public void SetGunPosition(Transform _position)
+    {
+        targetGunPos = _position;
+    }
+
+    [Client]
+    void FixedUpdate()
+    {
+        if(currentGun != null)
+        {
+            //currentGun.transform.position = Vector3.SmoothDamp(currentGun.transform.position, targetGunPos, ref currentGunVel, 0.1f);
+        }
+    }
 }

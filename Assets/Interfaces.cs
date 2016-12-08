@@ -16,6 +16,7 @@ public interface ISoldier {
     bool UseItemAtIndex(int _index);
     void Equip(Gun _gun);
 	void UpdateCameraY (float _yRot);
+    void SetGunPosition(Transform _position);
 }
 
 public interface IGun {

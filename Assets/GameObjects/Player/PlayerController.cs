@@ -2,7 +2,6 @@
 using UnityEngine.Networking;
 using System.Collections;
 using System;
-using UnityEngine.Networking;
 
 [RequireComponent(typeof(SoldierCharacter))]
 [RequireComponent(typeof(SetupLocalPlayer))]
@@ -10,13 +9,17 @@ public class PlayerController : NetworkBehaviour, ISoldier {
 
     ISoldier pawn;
 
-    Transform cam;
+    Camera cam;
+    float camFOV = 60.0f;
+    float dampVelocity = 0.4f;
+    public Transform GunPos;
+    public Transform GunAimPos;
 
     bool lockCursor = true;
 
     Animator animator;
-    bool anim_isJumping = false;
-    bool anim_isGrounded = false;
+    //bool anim_isJumping = false;
+    //bool anim_isGrounded = false;
     bool anim_isAiming = false;
     bool anim_isSprinting = false;
     float anim_moveSpeedX = 0.0f;
@@ -27,11 +30,13 @@ public class PlayerController : NetworkBehaviour, ISoldier {
 
     void Start() {
         pawn = GetComponent<SoldierCharacter>();
-		cam = GetComponentInChildren<Camera>().transform;
+		cam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
+        pawn.SetGunPosition(GunPos);
     }
 
     void Update() {
+        cam.fieldOfView = Mathf.SmoothDamp(cam.fieldOfView, camFOV, ref dampVelocity, 0.1f);
         HandleInput();
     }
 
@@ -164,10 +169,14 @@ public class PlayerController : NetworkBehaviour, ISoldier {
         if(Input.GetMouseButtonDown(1))
         {
             anim_isAiming = true;
+            camFOV = 30;
+            pawn.SetGunPosition(GunAimPos);
         }
         if(Input.GetMouseButtonUp(1))
         {
             anim_isAiming = false;
+            camFOV = 60;
+            pawn.SetGunPosition(GunPos);
         }
     }
 
@@ -201,5 +210,10 @@ public class PlayerController : NetworkBehaviour, ISoldier {
 
     public bool DropItemAtIndex(int _index) {
         return pawn.DropItemAtIndex(_index);
+    }
+
+    public void SetGunPosition(Transform _position)
+    {
+        pawn.SetGunPosition(_position);
     }
 }

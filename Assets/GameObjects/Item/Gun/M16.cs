@@ -29,7 +29,7 @@ public class M16 : Gun {
         Vector3 v = transform.rotation.eulerAngles;
         v = new Vector3(v.x + Random.Range(-gunProperties.accuracy, gunProperties.accuracy),
                         v.y + Random.Range(-gunProperties.accuracy, gunProperties.accuracy), 
-                        v.z);
+                        + v.z);
         return Quaternion.Euler(v);
     }
 
