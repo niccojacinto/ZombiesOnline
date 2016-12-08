@@ -2574,6 +2574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunPos: {fileID: 4000013901027910}
   GunAimPos: {fileID: 4000012448969164}
+  bodyMesh: {fileID: 1000010497071534}
 --- !u!114 &114000014178818502
 MonoBehaviour:
   m_ObjectHideFlags: 1

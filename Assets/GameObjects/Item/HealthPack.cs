@@ -8,4 +8,9 @@ public class HealthPack : Item {
         c.currentHealth += 20.0f;
         return true;
     }
+
+    void Update()
+    {
+        transform.Rotate(Vector3.up, 0.1f);
+    }
 }

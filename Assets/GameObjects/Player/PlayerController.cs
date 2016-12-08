@@ -15,6 +15,8 @@ public class PlayerController : NetworkBehaviour, ISoldier {
     public Transform GunPos;
     public Transform GunAimPos;
 
+    public GameObject bodyMesh;
+
     bool lockCursor = true;
 
     Animator animator;
@@ -33,6 +35,17 @@ public class PlayerController : NetworkBehaviour, ISoldier {
 		cam = GetComponentInChildren<Camera>();
         animator = GetComponent<Animator>();
         pawn.SetGunPosition(GunPos);
+
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        int i = UnityEngine.Random.Range(0, 2);
+        if (i == 0)
+        {
+            renderer.material.SetColor("_ColorTint", Color.red);
+        }
+        else
+        {
+            renderer.material.SetColor("_ColorTint", Color.green);
+        }
     }
 
     void Update() {

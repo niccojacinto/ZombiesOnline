@@ -18,7 +18,7 @@ public class SetupLocalPlayer : NetworkBehaviour {
             FindObjectOfType<UIQuickslot>().BindInventory(GetComponent<Inventory>());
 
             // disable soldier mesh
-            SwatMesh.SetActive(false);
+            //SwatMesh.SetActive(false);
         } else {
             // If the player isnt you...
 

@@ -17,10 +17,12 @@ public class AIController : Character {
     public GameObject leftForeArm;
     public GameObject leftHand;
     public GameObject leftUpperArm;
+    public Transform leftArmBone;
 
     public GameObject rightForeArm;
     public GameObject rightHand;
     public GameObject rightUpperArm;
+    public Transform rightArmBone;
 
     internal void DisemBowel(string tag)
     {
@@ -35,6 +37,7 @@ public class AIController : Character {
             leftForeArm.SetActive(false);
             leftHand.SetActive(false);
             leftUpperArm.SetActive(false);
+            leftArmBone.GetComponentInChildren<ParticleSystem>().Emit(25);
         }
 
         if(tag == "EnemyRightArm")
@@ -42,6 +45,7 @@ public class AIController : Character {
             rightForeArm.SetActive(false);
             rightHand.SetActive(false);
             rightUpperArm.SetActive(false);
+            rightArmBone.GetComponentInChildren<ParticleSystem>().Emit(25);
         }
     }
 
