@@ -22,6 +22,7 @@ GameObject:
   - 65: {fileID: 65000010848935628}
   - 54: {fileID: 54000010621090940}
   - 114: {fileID: 114000013334775476}
+  - 114: {fileID: 114000011109601406}
   m_Layer: 0
   m_Name: HealthPack
   m_TagString: Untagged
@@ -165,6 +166,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5492439, y: 1, z: 1}
   m_Center: {x: 0.022112846, y: 0, z: 0}
+--- !u!114 &114000011109601406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011865340532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 81
+    i1: 21
+    i2: 24
+    i3: 109
+    i4: 222
+    i5: 168
+    i6: 35
+    i7: 68
+    i8: 251
+    i9: 246
+    i10: 90
+    i11: 177
+    i12: 238
+    i13: 88
+    i14: 151
+    i15: 183
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114000013334775476
 MonoBehaviour:
   m_ObjectHideFlags: 1
