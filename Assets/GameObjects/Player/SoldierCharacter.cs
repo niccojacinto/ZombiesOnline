@@ -11,7 +11,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     Inventory inventory;
     public Gun currentGun;
     Transform targetGunPos;
-    Vector3 currentGunVel = Vector3.one;
+    Vector3 currentGunVel = Vector3.zero;
 
     Camera selfCamera;
     
@@ -138,7 +138,7 @@ public class SoldierCharacter : Character, ISoldier, IInventory {
     {
         if(currentGun != null)
         {
-            //currentGun.transform.position = Vector3.SmoothDamp(currentGun.transform.position, targetGunPos, ref currentGunVel, 0.1f);
+            currentGun.transform.position = Vector3.SmoothDamp(currentGun.transform.position, targetGunPos.position, ref currentGunVel, 0.1f);
         }
     }
 }
