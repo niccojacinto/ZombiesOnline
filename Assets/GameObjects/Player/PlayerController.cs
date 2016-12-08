@@ -141,7 +141,6 @@ public class PlayerController : NetworkBehaviour, ISoldier {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-<<<<<<< HEAD
             pawn.UseItemAtIndex(1);
         }
 
