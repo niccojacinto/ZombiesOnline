@@ -46,6 +46,11 @@ public class PlayerController : NetworkBehaviour, ISoldier {
         {
             renderer.material.SetColor("_ColorTint", Color.green);
         }
+
+        if(isLocalPlayer)
+        {
+            bodyMesh.SetActive(false);
+        }
     }
 
     void Update() {

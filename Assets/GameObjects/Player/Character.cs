@@ -12,8 +12,9 @@ public class Character : NetworkBehaviour, ICharacter {
 
     public const float linearSpeed = 5.0f; // Units per second
     public const float angularSpeed = 180.0f; // Degrees per second
+    public float speedModifier = 1.0f;
 
-    public const float maxHealth = 100.0f;
+    public float maxHealth = 100.0f;
     [SyncVar]
     public float currentHealth = 100.0f;
     public bool destroyOnDeath = true;
@@ -42,11 +43,11 @@ public class Character : NetworkBehaviour, ICharacter {
     }
 
     public void MoveForward(float _scale) {
-        selfTransform.Translate(Vector3.forward * linearSpeed * _scale * Time.deltaTime);
+        selfTransform.Translate(Vector3.forward * linearSpeed * speedModifier * _scale * Time.deltaTime);
     }
 
     public void MoveRight(float _scale) {
-        selfTransform.Translate(Vector3.right * linearSpeed * _scale * Time.deltaTime);
+        selfTransform.Translate(Vector3.right * linearSpeed * speedModifier * _scale * Time.deltaTime);
     }
 
     public void RotateRight(float _scale) {

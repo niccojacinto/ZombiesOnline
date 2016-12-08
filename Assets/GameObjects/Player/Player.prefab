@@ -2484,6 +2484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4080795611d4d48aeda28eec3c901c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedModifier: 1
+  maxHealth: 100
   currentHealth: 100
   destroyOnDeath: 1
   UIHealthBarPrefab: {fileID: 1000012742727956, guid: b1c694c91409fa64c9354e49a484c766,
@@ -2574,7 +2576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunPos: {fileID: 4000013901027910}
   GunAimPos: {fileID: 4000012448969164}
-  bodyMesh: {fileID: 1000010497071534}
+  bodyMesh: {fileID: 1000010852563458}
 --- !u!114 &114000014178818502
 MonoBehaviour:
   m_ObjectHideFlags: 1
