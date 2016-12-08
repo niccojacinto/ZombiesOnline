@@ -53,7 +53,7 @@ public class Character : NetworkBehaviour, ICharacter {
         selfTransform.Rotate(Vector3.up * angularSpeed * _scale * Time.deltaTime);
     }
 
-    public void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount)
     {
         if(!isServer)
         {
@@ -61,7 +61,7 @@ public class Character : NetworkBehaviour, ICharacter {
         }
 
         currentHealth -= amount;              
-        if(currentHealth < 0.0f)
+        if(currentHealth <= 0.0f)
         {
             currentHealth = 0.0f;
             if(destroyOnDeath)
