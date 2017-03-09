@@ -56,13 +56,13 @@ public class AIController : Character {
     float dyingAnimTime = 1.0f;
 
 
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
     Animator animator;
 
     Character closestPlayerController;
 
 	public override void Start () {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();
         destroyOnDeath = true;
 	}
